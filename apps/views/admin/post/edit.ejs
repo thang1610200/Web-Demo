@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <%- include ('../layout/head')%>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.2.0/tinymce.min.js"></script>
+    <script>tinymce.init({selector: 'textarea'});</script>
+
+</head>
+<body>
+    <div class="container">
+        <%- include ('../layout/nav')%>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">Edit Post</div>
+
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-6">
+
+                        <% if (data.error) {%>
+                            <div id="login-alert" class="alert alert-danger col-sm-12">
+                                <%= data.message%>
+                            </div>
+                        <%}%>
+
+                        <form role="form" method="" action="">
+
+                            <input type="hidden" class = "id" name = "id" value = "<% if (data.post){%><%= data.post.id%> <%}%>">
+
+                            <div class="form-group">
+                                <label>Title</label>
+                                <input class="form-control title" name="title" placeholder="Title" value = "<% if (data.post){%><%= data.post.title%> <%}%>">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Content</label>
+                                <textarea class="form-control" id="content" placeholder="Content"><% if (data.post){%> 
+                                    <%= data.post.content%> <%}%></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Author</label>
+                                <input class="form-control author" name="author" placeholder="Author" value="<% if (data.post){%><%= data.post.author%> <%}%>">
+                            </div>
+
+                            <input type="button" value = "Edit" class="btn btn-success post-edit"/>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/post.js" type="text/javascript"></script>
+</body>
+</html>
